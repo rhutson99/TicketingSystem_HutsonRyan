@@ -18,6 +18,11 @@ namespace TicketingSystem
         {
             watchers = new List<string>();
         }
+
+        public string Display()
+        {
+            return $"{id}\nSum: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nPerson assigned: {assigned}\nWatchers: {string.Join(",", watchers)}";
+        }
     }
 
 }

@@ -17,6 +17,7 @@ namespace TicketingSystem
             //ask user input menu
             do{
             Console.WriteLine("1) Create a new ticket.");
+            Console.WriteLine("2) Display tickets.");
             Console.WriteLine("Enter any other key to exit.");
 
             input = Console.ReadLine();
@@ -27,7 +28,6 @@ namespace TicketingSystem
                 {
                     Ticket ticket = new Ticket();
                 //create ticket
-                StreamWriter sw = new StreamWriter(file, append: true);
                 Console.WriteLine("Please input a ticket ID.");
                 ticket.id = Console.ReadLine();
                 Console.WriteLine("Please input a ticket summary.");
@@ -59,18 +59,20 @@ namespace TicketingSystem
 
                 }
 
-                //set up file with headers
-                else
-                {
-                    Console.WriteLine("No file found. Creating new file.");
-                    StreamWriter sw = new StreamWriter(file);
-                    sw.WriteLine("TicketID, Summary, Status, Priority, Submitter, Assigned, Watching");
-                    sw.Close();
-                }
 
 
             }
-            }while (input == "1");
+
+            else if(input == "2")
+            {
+                Console.Clear();
+                foreach(Ticket t in SystemFile.Tickets)
+                {
+                    Console.WriteLine(t.Display());
+                    Console.WriteLine();
+                }
+            }
+            }while (input == "1" || input == "2");
         }
     }
 }
