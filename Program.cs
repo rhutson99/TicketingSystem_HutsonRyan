@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Collections;
 
 namespace TicketingSystem
@@ -24,41 +25,38 @@ namespace TicketingSystem
             {
                 if (File.Exists(file))
                 {
+                    Ticket ticket = new Ticket();
                 //create ticket
                 StreamWriter sw = new StreamWriter(file, append: true);
                 Console.WriteLine("Please input a ticket ID.");
-                string iD = Console.ReadLine();
+                ticket.id = Console.ReadLine();
                 Console.WriteLine("Please input a ticket summary.");
-                string sum = Console.ReadLine();
+                ticket.summary = Console.ReadLine();
                 Console.WriteLine("Please input a status.");
-                string stat = Console.ReadLine();
+                ticket.status = Console.ReadLine();
                 Console.WriteLine("Please input a priority.");
-                string prior = Console.ReadLine();
+                ticket.priority = Console.ReadLine();
                 Console.WriteLine("Please input a Submitter.");
-                string sub = Console.ReadLine();
+                ticket.submitter = Console.ReadLine();
                 Console.WriteLine("Please input the person assigned.");
-                string assign = Console.ReadLine();
+                ticket.assigned = Console.ReadLine();
                 Console.WriteLine("Please input a watcher.");
                 
                  //multiple inputs for watcher on one ticket
 
-                ArrayList watchers = new ArrayList();
                 int i;
                 for(i=0; i < 3; i++)
                 {
                     string watch = Console.ReadLine();
-                    watchers.Add(watch);
+                    ticket.watchers.Add(watch);
                     Console.WriteLine("Would you like to add another watcher? (Y/N)");
                     string res = Console.ReadLine().ToUpper();
                     if (res != "Y") {break;}
                 }
-                sw.Write("{0},{1},{2},{3},{4},{5},", iD, sum, stat, prior, sub, assign);
-                foreach(var d in watchers)
-                {
-                    sw.Write("{0}|", d);
-                }
-                sw.WriteLine();
-                sw.Close();
+                
+                SystemFile.AddTicket(ticket);
+                
+
                 }
 
                 //set up file with headers
