@@ -11,6 +11,8 @@ namespace TicketingSystem
             string file = "Tickets.csv";
             string input;
 
+            SystemFile systemFile = new SystemFile(file);
+
             //ask user input menu
             do{
             Console.WriteLine("1) Create a new ticket.");
