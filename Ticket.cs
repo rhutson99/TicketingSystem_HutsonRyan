@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace TicketingSystem
 {
 
-    public class Ticket
+    public abstract class Ticket
     {
         public string id {get; set;}
         public string summary {get; set;}
@@ -19,9 +19,19 @@ namespace TicketingSystem
             watchers = new List<string>();
         }
 
-        public string Display()
+        public virtual string Display()
         {
             return $"{id}\nSum: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nPerson assigned: {assigned}\nWatchers: {string.Join(",", watchers)}";
+        }
+    }
+
+    public class BugDefect : Ticket
+    {
+        public string severity {get; set;}
+
+        public override string Display()
+        {
+            return $"{id}\nSum: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nPerson assigned: {assigned}\nWatchers: {string.Join(",", watchers)}\nSeverity: {severity}";
         }
     }
 

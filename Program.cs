@@ -26,7 +26,7 @@ namespace TicketingSystem
             {
                 if (File.Exists(file))
                 {
-                    Ticket ticket = new Ticket();
+                    Ticket ticket = new BugDefect();
                 //create ticket
                 Console.WriteLine("Please input a ticket ID.");
                 ticket.id = Console.ReadLine();
