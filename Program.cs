@@ -26,7 +26,7 @@ namespace TicketingSystem
             {
                 if (File.Exists(file))
                 {
-                    Ticket ticket = new BugDefect();
+                    BugDefect ticket = new BugDefect();
                 //create ticket
                 Console.WriteLine("Please input a ticket ID.");
                 ticket.id = Console.ReadLine();
@@ -53,6 +53,10 @@ namespace TicketingSystem
                     string res = Console.ReadLine().ToUpper();
                     if (res != "Y") {break;}
                 }
+
+                Console.WriteLine("Please input a severity.");
+                ticket.severity = Console.ReadLine();
+                
                 
                 SystemFile.AddTicket(ticket);
                 

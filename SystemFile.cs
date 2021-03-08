@@ -21,7 +21,7 @@ namespace TicketingSystem
             sr.ReadLine();
             while (!sr.EndOfStream)
             {
-                Ticket ticket = new BugDefect();
+                BugDefect ticket = new BugDefect();
                 string line = sr.ReadLine();
                 string[] TicketDetails = line.Split(",");
                 ticket.id = TicketDetails[0];
