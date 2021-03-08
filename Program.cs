@@ -117,6 +117,46 @@ namespace TicketingSystem
                 SystemFile.AddTicket(ticket);
                 }
 
+                //ticketing system for tasks
+                if(input == "3")
+                {
+                    Task ticket = new Task();
+                //create ticket
+                Console.WriteLine("Please input a ticket ID.");
+                ticket.id = Console.ReadLine();
+                Console.WriteLine("Please input a ticket summary.");
+                ticket.summary = Console.ReadLine();
+                Console.WriteLine("Please input a status.");
+                ticket.status = Console.ReadLine();
+                Console.WriteLine("Please input a priority.");
+                ticket.priority = Console.ReadLine();
+                Console.WriteLine("Please input a submitter.");
+                ticket.submitter = Console.ReadLine();
+                Console.WriteLine("Please input the person assigned.");
+                ticket.assigned = Console.ReadLine();
+                Console.WriteLine("Please input a watcher.");
+                
+                 //multiple inputs for watcher on one ticket
+
+                int i;
+                for(i=0; i < 3; i++)
+                {
+                    string watch = Console.ReadLine();
+                    ticket.watchers.Add(watch);
+                    Console.WriteLine("Would you like to add another watcher? (Y/N)");
+                    string res = Console.ReadLine().ToUpper();
+                    if (res != "Y") {break;}
+                }
+
+                Console.WriteLine("Please input a project name.");
+                ticket.ProjectName = Console.ReadLine();
+                Console.WriteLine("Please input a due date in MM/DD/YYYY format.");
+                ticket.DueDate = DateTime.Parse(Console.ReadLine());
+                
+                
+                SystemFile.AddTicket(ticket);
+                }
+
 
 
 
