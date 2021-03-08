@@ -38,13 +38,13 @@ namespace TicketingSystem
     public class Enchancement : Ticket
     {
         public string software {get; set;}
-        public int cost {get; set;}
+        public double cost {get; set;}
         public string reason {get; set;}
         public string estimate {get; set;}
 
         public override string Display()
         {
-            return $"{id}\nSum: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nPerson assigned: {assigned}\nWatchers: {string.Join(",", watchers)}\nSoftware: {software}\nCost: {cost}\nReason: {reason}\nEstimate: {estimate} ";
+            return $"{id}\nSum: {summary}\nStatus: {status}\nPriority: {priority}\nSubmitter: {submitter}\nPerson assigned: {assigned}\nWatchers: {string.Join(",", watchers)}\nSoftware: {software}\nCost: ${cost}\nReason: {reason}\nEstimate: {estimate} ";
         }
     }
 

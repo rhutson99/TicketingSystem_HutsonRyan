@@ -9,14 +9,10 @@ namespace TicketingSystem
     {
         static void Main(string[] args)
         {
-            string file1 = "Tickets.csv";
-            string file2 = "Enhancements.csv";
-            string file3 = "Task.csv";
             string input;
 
-            SystemFile systemFile1 = new SystemFile(file1);
-            SystemFile systemFile2 = new SystemFile(file2);
-            SystemFile systemFile3 = new SystemFile(file3);
+            
+
 
             //ask user input menu
             do{
@@ -28,16 +24,20 @@ namespace TicketingSystem
 
             if(input == "1")
             {
+                
                 //user menu for choosing what kind of ticket to create
                 Console.WriteLine("1) Bug or Defect.");
                 Console.WriteLine("2) Enhancement.");
-                Console.WriteLine("3) Task");
+                Console.WriteLine("3) Task.");
 
                 input = Console.ReadLine();
 
                 //ticket system for bugs and defects
                 if(input == "1")
                 {
+                    string file = "Tickets.csv";
+                    BugSystemFile systemFile1 = new BugSystemFile(file);
+
                     BugDefect ticket = new BugDefect();
                 //create ticket
                 Console.WriteLine("Please input a ticket ID.");
@@ -70,12 +70,15 @@ namespace TicketingSystem
                 ticket.severity = Console.ReadLine();
                 
                 
-                SystemFile.AddTicket(ticket);
+                BugSystemFile.AddBugTicket(ticket);
                 }
 
                 //ticketing system for enhancements
                 if(input == "2")
                 {
+                    string file = "Enhancements.csv";
+                    EnhancementSystemFile systemFile2 = new EnhancementSystemFile(file);
+
                     Enchancement ticket = new Enchancement();
                 //create ticket
                 Console.WriteLine("Please input a ticket ID.");
@@ -107,19 +110,22 @@ namespace TicketingSystem
                 Console.WriteLine("Please input a software.");
                 ticket.software = Console.ReadLine();
                 Console.WriteLine("Please input a cost.");
-                ticket.cost = Convert.ToInt32(Console.ReadLine());
+                ticket.cost = Convert.ToDouble(Console.ReadLine());
                 Console.WriteLine("Please input a reason.");
                 ticket.reason = Console.ReadLine();
                 Console.WriteLine("Please input an estimate.");
                 ticket.estimate = Console.ReadLine();
                 
                 
-                SystemFile.AddTicket(ticket);
+                EnhancementSystemFile.AddEnhancement(ticket);
                 }
 
                 //ticketing system for tasks
                 if(input == "3")
                 {
+                    string file = "Task.csv";
+                    TaskSystemFile systemFile3 = new TaskSystemFile(file);
+
                     Task ticket = new Task();
                 //create ticket
                 Console.WriteLine("Please input a ticket ID.");
@@ -154,7 +160,7 @@ namespace TicketingSystem
                 ticket.DueDate = DateTime.Parse(Console.ReadLine());
                 
                 
-                SystemFile.AddTicket(ticket);
+                TaskSystemFile.AddTask(ticket);
                 }
 
 
@@ -165,10 +171,27 @@ namespace TicketingSystem
             else if(input == "2")
             {
                 Console.Clear();
-                foreach(Ticket t in SystemFile.Tickets)
+                Console.WriteLine("Bugs and Defects:");
+                foreach(BugDefect t in BugSystemFile.Bugs)
                 {
                     Console.WriteLine(t.Display());
                     Console.WriteLine();
+                }
+
+                Console.WriteLine("Enhancements:");
+                foreach(Enchancement t in EnhancementSystemFile.Enhance)
+                {
+                    Console.WriteLine(t.Display());
+                    Console.WriteLine();
+
+                }
+
+                Console.WriteLine("Tasks:");
+                foreach(Task t in SystemFile.Task)
+                {
+                    Console.WriteLine(t.Display());
+                    Console.WriteLine();
+
                 }
             }
             }while (input == "1" || input == "2");
