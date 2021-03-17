@@ -35,7 +35,7 @@ namespace TicketingSystem
         }
     }
 
-    public class Enchancement : Ticket
+    public class Enhancement : Ticket
     {
         public string software {get; set;}
         public double cost {get; set;}

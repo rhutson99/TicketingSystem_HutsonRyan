@@ -7,27 +7,28 @@ namespace TicketingSystem
 {
     public abstract class SystemFile
     {
-        public static string filePath {get; set;}
+
         public static List<BugDefect> Bugs {get; set;}
-        public static List<Enchancement> Enhance {get; set;}
+        public static List<Enhancement> Enhance {get; set;}
         public static List<Task> Task {get; set;}
 
     }
 
         public class BugSystemFile : SystemFile
         {
+            public static string filePath1 {get; set;}
 
 
         public BugSystemFile(string file)
         {
-            filePath = file;
+            filePath1 = file;
             Bugs = new List<BugDefect>();
 
-            if(file == "Tickets.csv")
+            if(File.Exists(file))
             {
             try{
 
-            StreamReader sr = new StreamReader(filePath);
+            StreamReader sr = new StreamReader(filePath1);
             sr.ReadLine();
             while (!sr.EndOfStream)
             {
@@ -63,7 +64,7 @@ namespace TicketingSystem
         {
 
 
-            StreamWriter sw = new StreamWriter(filePath, true);
+            StreamWriter sw = new StreamWriter(filePath1, true);
             sw.WriteLine($"{ticket.id},{ticket.summary},{ticket.status},{ticket.priority},{ticket.submitter},{ticket.assigned},{string.Join("|",ticket.watchers)},{ticket.severity}");
             sw.Close();
 
@@ -76,19 +77,21 @@ namespace TicketingSystem
 
     public class EnhancementSystemFile : SystemFile
     {
+
+        public static string filePath2 {get; set;}
         public EnhancementSystemFile(string file)
         {
-            filePath = file;
-            Enhance = new List<Enchancement>();
-            if(file == "Enhancements.csv")
+            filePath2 = file;
+            Enhance = new List<Enhancement>();
+            if(File.Exists(file))
             {
             try{
 
-            StreamReader sr = new StreamReader(filePath);
+            StreamReader sr = new StreamReader(filePath2);
             sr.ReadLine();
             while (!sr.EndOfStream)
             {
-                Enchancement ticket = new Enchancement();
+                Enhancement ticket = new Enhancement();
                 string line = sr.ReadLine();
                 string[] TicketDetails = line.Split(",");
                 ticket.id = TicketDetails[0];
@@ -118,11 +121,11 @@ namespace TicketingSystem
             }
         }
 
-        public static void AddEnhancement(Enchancement ticket)
+        public static void AddEnhancement(Enhancement ticket)
         {
 
 
-            StreamWriter sw = new StreamWriter(filePath, true);
+            StreamWriter sw = new StreamWriter(filePath2, true);
             sw.WriteLine($"{ticket.id},{ticket.summary},{ticket.status},{ticket.priority},{ticket.submitter},{ticket.assigned},{string.Join("|",ticket.watchers)},{ticket.software},{ticket.cost},{ticket.reason},{ticket.estimate}");
             sw.Close();
 
@@ -135,15 +138,17 @@ namespace TicketingSystem
     public class TaskSystemFile : SystemFile
     {
 
+        public static string filePath3 {get; set;}
+
                 public TaskSystemFile(string file)
         {
-            filePath = file;
+            filePath3 = file;
             Task = new List<Task>();
-            if(file == "Task.csv")
+            if(File.Exists(file))
             {
             try{
 
-            StreamReader sr = new StreamReader(filePath);
+            StreamReader sr = new StreamReader(filePath3);
             sr.ReadLine();
             while (!sr.EndOfStream)
             {
@@ -180,7 +185,7 @@ namespace TicketingSystem
         {
 
 
-            StreamWriter sw = new StreamWriter(filePath, true);
+            StreamWriter sw = new StreamWriter(filePath3, true);
             sw.WriteLine($"{ticket.id},{ticket.summary},{ticket.status},{ticket.priority},{ticket.submitter},{ticket.assigned},{string.Join("|",ticket.watchers)},{ticket.ProjectName},{ticket.DueDate}");
             sw.Close();
 

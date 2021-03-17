@@ -10,7 +10,12 @@ namespace TicketingSystem
         static void Main(string[] args)
         {
             string input;
-
+                    string file1 = "Tickets.csv";
+                    BugSystemFile systemFile1 = new BugSystemFile(file1);
+                     string file2 = "Enhancements.csv";
+                    EnhancementSystemFile systemFile2 = new EnhancementSystemFile(file2);
+                    string file3 = "Task.csv";
+                    TaskSystemFile systemFile3 = new TaskSystemFile(file3);
             
 
 
@@ -35,8 +40,6 @@ namespace TicketingSystem
                 //ticket system for bugs and defects
                 if(input == "1")
                 {
-                    string file = "Tickets.csv";
-                    BugSystemFile systemFile1 = new BugSystemFile(file);
 
                     BugDefect ticket = new BugDefect();
                 //create ticket
@@ -76,10 +79,9 @@ namespace TicketingSystem
                 //ticketing system for enhancements
                 if(input == "2")
                 {
-                    string file = "Enhancements.csv";
-                    EnhancementSystemFile systemFile2 = new EnhancementSystemFile(file);
 
-                    Enchancement ticket = new Enchancement();
+
+                    Enhancement ticket = new Enhancement();
                 //create ticket
                 Console.WriteLine("Please input a ticket ID.");
                 ticket.id = Console.ReadLine();
@@ -123,8 +125,7 @@ namespace TicketingSystem
                 //ticketing system for tasks
                 if(input == "3")
                 {
-                    string file = "Task.csv";
-                    TaskSystemFile systemFile3 = new TaskSystemFile(file);
+
 
                     Task ticket = new Task();
                 //create ticket
@@ -172,27 +173,65 @@ namespace TicketingSystem
             {
                 Console.Clear();
                 Console.WriteLine("Bugs and Defects:");
-                foreach(BugDefect t in BugSystemFile.Bugs)
-                {
-                    Console.WriteLine(t.Display());
-                    Console.WriteLine();
+                try{
+                    StreamReader sr = new StreamReader(file1);
+                    while (!sr.EndOfStream)
+                    {
+
+                        Console.WriteLine(sr.ReadLine());
+
+
+                    }
+                    sr.Close();
                 }
+
+                catch(FileNotFoundException)
+                {
+                    Console.WriteLine("No bugs or defects listed");
+                }
+
 
                 Console.WriteLine("Enhancements:");
-                foreach(Enchancement t in EnhancementSystemFile.Enhance)
-                {
-                    Console.WriteLine(t.Display());
-                    Console.WriteLine();
+                try{
+                    StreamReader sr1 = new StreamReader(file2);
+                    while (!sr1.EndOfStream)
+                    {
 
+                        Console.WriteLine(sr1.ReadLine());
+
+
+                    }
+                    sr1.Close();
                 }
+
+                catch(FileNotFoundException)
+                {
+                    Console.WriteLine("No enhancements listed");
+                }
+
 
                 Console.WriteLine("Tasks:");
-                foreach(Task t in SystemFile.Task)
-                {
-                    Console.WriteLine(t.Display());
-                    Console.WriteLine();
+                try{
+                    StreamReader sr2 = new StreamReader(file3);
+                    while (!sr2.EndOfStream)
+                    {
 
+                        //read movie file
+
+                        Console.WriteLine(sr2.ReadLine());
+
+                        // display library
+
+
+                    }
+                    sr2.Close();
                 }
+
+                catch(FileNotFoundException)
+                {
+                    Console.WriteLine("No tasks listed");
+                }
+
             }
             }while (input == "1" || input == "2");
         }
