@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 
 namespace TicketingSystem
 {
@@ -74,7 +75,7 @@ namespace TicketingSystem
                 ticket.severity = Console.ReadLine();
                 
                 
-                BugSystemFile.AddBugTicket(ticket);
+                systemFile1.AddBugTicket(ticket);
                 }
 
                 //ticketing system for enhancements
@@ -120,7 +121,7 @@ namespace TicketingSystem
                 ticket.estimate = Console.ReadLine();
                 
                 
-                EnhancementSystemFile.AddEnhancement(ticket);
+                systemFile2.AddEnhancement(ticket);
                 }
 
                 //ticketing system for tasks
@@ -162,7 +163,7 @@ namespace TicketingSystem
                 ticket.DueDate = DateTime.Parse(Console.ReadLine());
                 
                 
-                TaskSystemFile.AddTask(ticket);
+                systemFile3.AddTask(ticket);
                 }
 
 
@@ -240,7 +241,45 @@ namespace TicketingSystem
                 Console.WriteLine("1) Search by status.");
                 Console.WriteLine("2) Search by priority.");
                 Console.WriteLine("3) Search by submitter.");
-                
+
+                string type = Console.ReadLine();
+
+                if(type == "1")
+                {
+                    Console.WriteLine("Please enter the status to search for.");
+                    string search = Console.ReadLine();
+                    var stsearch1 = systemFile1.Bugs.Where(t => t.status.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    var stsearch2 = systemFile2.Enhance.Where(t => t.status.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    var stsearch3 = systemFile3.Task.Where(t => t.status.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    int stsearchresults = stsearch1.Count() + stsearch2.Count() + stsearch3.Count();
+                    Console.WriteLine($"There are {stsearchresults} tickets with the search query as the status.");
+
+
+
+                }
+
+                if(type == "2")
+                {
+                   Console.WriteLine("Please enter the priority to search for.");
+                    string search = Console.ReadLine();
+                    var psearch1 = systemFile1.Bugs.Where(t => t.priority.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    var psearch2 = systemFile2.Enhance.Where(t => t.priority.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    var psearch3 = systemFile3.Task.Where(t => t.priority.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    int psearchresults = psearch1.Count() + psearch2.Count() + psearch3.Count();
+                    Console.WriteLine($"There are {psearchresults} tickets with the search query as the priority."); 
+                }
+
+                if(type == "3")
+                {
+                    Console.WriteLine("Please enter the submitter to search for.");
+                    string search = Console.ReadLine();
+                    var susearch1 = systemFile1.Bugs.Where(t => t.submitter.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    var susearch2 = systemFile2.Enhance.Where(t => t.submitter.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    var susearch3 = systemFile3.Task.Where(t => t.submitter.Contains(search, StringComparison.OrdinalIgnoreCase));
+                    int susearchresults = susearch1.Count() + susearch2.Count() + susearch3.Count();
+                    Console.WriteLine($"There are {susearchresults} tickets with the search query as the status");
+                }
+
 
 
             }

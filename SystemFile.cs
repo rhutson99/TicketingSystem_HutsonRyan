@@ -5,18 +5,12 @@ using System.Linq;
 
 namespace TicketingSystem
 {
-    public abstract class SystemFile
-    {
 
-        public static List<BugDefect> Bugs {get; set;}
-        public static List<Enhancement> Enhance {get; set;}
-        public static List<Task> Task {get; set;}
 
-    }
-
-        public class BugSystemFile : SystemFile
+        public class BugSystemFile
         {
-            public static string filePath1 {get; set;}
+            public string filePath1 {get; set;}
+            public List<BugDefect> Bugs {get; set;}
 
 
         public BugSystemFile(string file)
@@ -60,7 +54,7 @@ namespace TicketingSystem
             }
         }
 
-                public static void AddBugTicket(BugDefect ticket)
+                public void AddBugTicket(BugDefect ticket)
         {
 
 
@@ -75,10 +69,11 @@ namespace TicketingSystem
 
     }
 
-    public class EnhancementSystemFile : SystemFile
+    public class EnhancementSystemFile
     {
 
-        public static string filePath2 {get; set;}
+        public string filePath2 {get; set;}
+        public List<Enhancement> Enhance {get; set;}
         public EnhancementSystemFile(string file)
         {
             filePath2 = file;
@@ -121,7 +116,7 @@ namespace TicketingSystem
             }
         }
 
-        public static void AddEnhancement(Enhancement ticket)
+        public void AddEnhancement(Enhancement ticket)
         {
 
 
@@ -135,10 +130,11 @@ namespace TicketingSystem
 
     }
 
-    public class TaskSystemFile : SystemFile
+    public class TaskSystemFile
     {
 
-        public static string filePath3 {get; set;}
+        public string filePath3 {get; set;}
+        public List<Task> Task {get; set;}
 
                 public TaskSystemFile(string file)
         {
@@ -181,7 +177,7 @@ namespace TicketingSystem
 
         }
 
-        public static void AddTask(Task ticket)
+        public void AddTask(Task ticket)
         {
 
 
