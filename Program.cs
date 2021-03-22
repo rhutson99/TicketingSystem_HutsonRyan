@@ -23,6 +23,7 @@ namespace TicketingSystem
             do{
             Console.WriteLine("1) Create a new ticket.");
             Console.WriteLine("2) Display tickets.");
+            Console.WriteLine("3) Search for a ticket.");
             Console.WriteLine("Enter any other key to exit.");
 
             input = Console.ReadLine();
@@ -233,7 +234,19 @@ namespace TicketingSystem
                 }
 
             }
-            }while (input == "1" || input == "2");
+
+            else if(input == "3")
+            {
+                Console.WriteLine("1) Search by status.");
+                Console.WriteLine("2) Search by priority.");
+                Console.WriteLine("3) Search by submitter.");
+                
+
+
+            }
+
+
+            }while (input == "1" || input == "2" || input == "3");
         }
     }
 }
