@@ -285,6 +285,24 @@ namespace TicketingSystem
                     var psearch3 = systemFile3.Task.Where(t => t.priority.Contains(search, StringComparison.OrdinalIgnoreCase));
                     int psearchresults = psearch1.Count() + psearch2.Count() + psearch3.Count();
                     Console.WriteLine($"There are {psearchresults} tickets with the search query as the priority."); 
+
+                    Console.WriteLine("Bugs and Defects:");
+                    foreach(BugDefect t in psearch1)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.severity}");
+                    }
+
+                    Console.WriteLine("Enhancements:");
+                    foreach(Enhancement t in psearch2)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.software}, {t.cost}, {t.reason}, {t.estimate}");
+                    }
+
+                    Console.WriteLine("Tasks:");
+                    foreach(Task t in psearch3)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.ProjectName}, {t.DueDate}");
+                    }
                 }
 
                 if(type == "3")
@@ -296,6 +314,24 @@ namespace TicketingSystem
                     var susearch3 = systemFile3.Task.Where(t => t.submitter.Contains(search, StringComparison.OrdinalIgnoreCase));
                     int susearchresults = susearch1.Count() + susearch2.Count() + susearch3.Count();
                     Console.WriteLine($"There are {susearchresults} tickets with the search query as the status");
+
+                    Console.WriteLine("Bugs and Defects:");
+                    foreach(BugDefect t in susearch1)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.severity}");
+                    }
+
+                    Console.WriteLine("Enhancements:");
+                    foreach(Enhancement t in susearch2)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.software}, {t.cost}, {t.reason}, {t.estimate}");
+                    }
+
+                    Console.WriteLine("Tasks:");
+                    foreach(Task t in susearch3)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.ProjectName}, {t.DueDate}");
+                    }
                 }
 
 
