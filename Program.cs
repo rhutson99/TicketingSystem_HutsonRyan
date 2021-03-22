@@ -218,11 +218,9 @@ namespace TicketingSystem
                     while (!sr2.EndOfStream)
                     {
 
-                        //read movie file
 
                         Console.WriteLine(sr2.ReadLine());
 
-                        // display library
 
 
                     }
@@ -253,6 +251,26 @@ namespace TicketingSystem
                     var stsearch3 = systemFile3.Task.Where(t => t.status.Contains(search, StringComparison.OrdinalIgnoreCase));
                     int stsearchresults = stsearch1.Count() + stsearch2.Count() + stsearch3.Count();
                     Console.WriteLine($"There are {stsearchresults} tickets with the search query as the status.");
+
+                    Console.WriteLine("Bugs and Defects:");
+                    foreach(BugDefect t in stsearch1)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.severity}");
+                    }
+
+                    Console.WriteLine("Enhancements:");
+                    foreach(Enhancement t in stsearch2)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.software}, {t.cost}, {t.reason}, {t.estimate}");
+                    }
+
+                    Console.WriteLine("Tasks:");
+                    foreach(Task t in stsearch3)
+                    {
+                        Console.WriteLine($"{t.id}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}, {string.Join(", ", t.watchers)}, {t.ProjectName}, {t.DueDate}");
+                    }
+                    
+
 
 
 
